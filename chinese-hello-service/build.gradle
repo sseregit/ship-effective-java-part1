@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group = 'effective'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation files('libs/ship-effective-java-part1-0.0.1-SNAPSHOT-plain.jar')
+}
+
+test {
+    useJUnitPlatform()
+}

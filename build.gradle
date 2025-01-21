@@ -24,6 +24,7 @@ repositories {
 }
 
 dependencies {
+    implementation files('libs/chinese-hello-service-1.0-SNAPSHOT.jar')
     implementation 'org.springframework.boot:spring-boot-starter'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
