@@ -9,7 +9,7 @@ class SpellCheckerTest {
 
     @Test
     void isValid() {
-        SpellChecker spellChecker = new SpellChecker(new DefaultDictionary());
+        SpellChecker spellChecker = new SpellChecker(DefaultDictionary::new);
         assertTrue(spellChecker.isValid("test"));
     }
 
