@@ -12,12 +12,20 @@ public class ColorPoint extends Point {
         this.color = color;
     }
 
-//    @Override
+    //    @Override
 //    public boolean equals(Object o) {
 //        if (!(o instanceof ColorPoint)) return false;
 //        Point p = (Point) o;
 //        return super.equals(o) && ((ColorPoint) o).color == color;
 //    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Point)) return false;
+        if (!(o instanceof ColorPoint)) return o.equals(this);
+
+        return super.equals(o) && ((ColorPoint) o).color == color;
+    }
 
     public static void main(String[] args) {
         Point p = new Point(1, 2);
