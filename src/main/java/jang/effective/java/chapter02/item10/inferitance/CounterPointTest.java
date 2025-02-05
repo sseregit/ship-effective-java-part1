@@ -1,6 +1,8 @@
 package jang.effective.java.chapter02.item10.inferitance;
 
+import jang.effective.java.chapter02.item10.Color;
 import jang.effective.java.chapter02.item10.Point;
+import jang.effective.java.chapter02.item10.composition.ColorPoint;
 
 import java.util.Set;
 
@@ -19,7 +21,7 @@ public class CounterPointTest {
 
     public static void main(String[] args) {
         Point p1 = new Point(1, 0);
-        Point p2 = new CounterPoint(1, 0);
+        Point p2 = new ColorPoint(1, 0, Color.RED).asPoint();
 
         System.out.println(onUnitCircle(p1));
         System.out.println(onUnitCircle(p2));
