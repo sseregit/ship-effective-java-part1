@@ -25,8 +25,35 @@ public class PhoneNumber {
         return areaCode == that.areaCode && prefix == that.prefix && lineNumber == that.lineNumber;
     }
 
+//    @Override
+//    public int hashCode() {
+//        return 42;
+//    }
+
+//    @Override
+//    public int hashCode() {
+//        int result = Short.hashCode(areaCode);
+//        result = 31 * result + Short.hashCode(prefix);
+//        result = 31 * result + Short.hashCode(lineNumber);
+//        return result;
+//    }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(areaCode, prefix, lineNumber);
+//    }
+
+    private int hashCode;
+
     @Override
     public int hashCode() {
-        return 42;
+        int result = hashCode;
+        if (result == 0) {
+            result = Short.hashCode(areaCode);
+            result = 31 * result + Short.hashCode(prefix);
+            result = 31 * result + Short.hashCode(lineNumber);
+            hashCode = result;
+        }
+        return result;
     }
 }
