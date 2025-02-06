@@ -1,9 +1,9 @@
 package jang.effective.java.chapter02.item11.hashcode;
 
 public class PhoneNumber {
-    private short areaCode;
-    private short prefix;
-    private short lineNumber;
+    private final short areaCode;
+    private final short prefix;
+    private final short lineNumber;
 
     public PhoneNumber(int areaCode, int prefix, int lineNumber) {
         this.areaCode = rangeCheck(areaCode, 999, "area code");
@@ -16,13 +16,6 @@ public class PhoneNumber {
             throw new IllegalArgumentException(arg + ": " + val);
         }
         return (short) val;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        PhoneNumber that = (PhoneNumber) o;
-        return areaCode == that.areaCode && prefix == that.prefix && lineNumber == that.lineNumber;
     }
 
 //    @Override
@@ -43,17 +36,30 @@ public class PhoneNumber {
 //        return Objects.hash(areaCode, prefix, lineNumber);
 //    }
 
-    private int hashCode;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        PhoneNumber that = (PhoneNumber) o;
+        return areaCode == that.areaCode && prefix == that.prefix && lineNumber == that.lineNumber;
+    }
+
+    private volatile int hashCode;
 
     @Override
     public int hashCode() {
-        int result = hashCode;
-        if (result == 0) {
-            result = Short.hashCode(areaCode);
-            result = 31 * result + Short.hashCode(prefix);
-            result = 31 * result + Short.hashCode(lineNumber);
-            hashCode = result;
+        if (this.hashCode != 0) {
+            return this.hashCode;
         }
-        return result;
+
+        synchronized (this) {
+            int result = hashCode;
+            if (result == 0) {
+                result = Short.hashCode(areaCode);
+                result = 31 * result + Short.hashCode(prefix);
+                result = 31 * result + Short.hashCode(lineNumber);
+                hashCode = result;
+            }
+            return result;
+        }
     }
 }
