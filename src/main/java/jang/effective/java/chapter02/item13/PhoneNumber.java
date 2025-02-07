@@ -17,6 +17,10 @@ public class PhoneNumber implements Cloneable {
         System.out.println("constructor is called");
     }
 
+//    public PhoneNumber(PhoneNumber phoneNumber) {
+//        this(phoneNumber.areaCode, phoneNumber.prefix, phoneNumber.lineNumber);
+//    }
+
     private static short rangeCheck(int val, int max, String arg) {
         if (val < 0 || val > max) {
             throw new IllegalArgumentException(arg + ": " + val);
