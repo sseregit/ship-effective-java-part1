@@ -1,12 +1,27 @@
 package jang.effective.java.chapter02.item14;
 
-import java.util.Objects;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
+
+import static java.util.Comparator.comparingInt;
 
 public class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
 
     private final short areaCode;
     private final short prefix;
     private final short lineNumber;
+
+    public short getAreaCode() {
+        return areaCode;
+    }
+
+    public short getPrefix() {
+        return prefix;
+    }
+
+    public short getLineNumber() {
+        return lineNumber;
+    }
 
     public PhoneNumber(int areaCode, int prefix, int lineNumber) {
         this.areaCode = rangeCheck(areaCode, 999, "area code");
@@ -54,15 +69,38 @@ public class PhoneNumber implements Cloneable, Comparable<PhoneNumber> {
         }
     }
 
+//    @Override
+//    public int compareTo(PhoneNumber pn) {
+//        int result = Short.compare(this.areaCode, pn.areaCode);
+//        if (result == 0) {
+//            result = Short.compare(this.prefix, pn.prefix);
+//            if (result == 0) {
+//                result = Short.compare(this.lineNumber, pn.lineNumber);
+//            }
+//        }
+//        return result;
+//    }
+
+    private static final Comparator<PhoneNumber> COMPARATOR =
+            comparingInt((PhoneNumber pn) -> pn.areaCode)
+                    .thenComparingInt(PhoneNumber::getPrefix)
+                    .thenComparingInt(PhoneNumber::getLineNumber);
+
     @Override
     public int compareTo(PhoneNumber pn) {
-        int result = Short.compare(this.areaCode, pn.areaCode);
-        if (result == 0) {
-            result = Short.compare(this.prefix, pn.prefix);
-            if (result == 0) {
-                result = Short.compare(this.lineNumber, pn.lineNumber);
-            }
+        return COMPARATOR.compare(this, pn);
+    }
+
+    private static PhoneNumber randomPhoneNumber() {
+        Random rnd = ThreadLocalRandom.current();
+        return new PhoneNumber(rnd.nextInt(1000), rnd.nextInt(1000), rnd.nextInt(10000));
+    }
+
+    public static void main(String[] args) {
+        Set<PhoneNumber> s = new TreeSet<>();
+        for (int i = 0; i < 10; i++) {
+            s.add(randomPhoneNumber());
         }
-        return result;
+        System.out.println(s);
     }
 }
