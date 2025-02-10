@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'effective'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation files('../name-service/build/libs/name-service-1.0-SNAPSHOT.jar')
+}
+
+java {
+    modularity.inferModulePath.set(true)
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'effective.hello.HelloService',
+        )
+    }
+}
+
+test {
+    useJUnitPlatform()
+}

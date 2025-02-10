@@ -1,8 +1,11 @@
 package effective.hello;
 
+import effective.NameService;
+
 public class HelloService {
 
     public static void main(String[] args) {
-        System.out.println("Hello Java Module");
+        NameService nameService = new NameService();
+        System.out.println("Hello " + nameService.getName() + ", Java Module");
     }
 }

@@ -1,2 +1,3 @@
-module ship.effective.java.part1.hello {
+module hello.module {
+    requires name.service.main;
 }
