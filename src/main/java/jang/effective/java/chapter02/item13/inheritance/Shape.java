@@ -1,4 +1,4 @@
-package jang.effective.java.chapter02.item13.inheriance;
+package jang.effective.java.chapter02.item13.inheritance;
 
 public abstract class Shape implements Cloneable {
 
