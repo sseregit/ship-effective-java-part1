@@ -1,4 +1,4 @@
-package jang.effective.java.chapter04.item17;
+package jang.effective.java.chapter04.item17.part2;
 
 public class StringExample {
 

@@ -1,4 +1,4 @@
-package jang.effective.java.chapter04.item17;
+package jang.effective.java.chapter04.item17.part2;
 
 import jang.effective.java.chapter02.item10.Point;
 

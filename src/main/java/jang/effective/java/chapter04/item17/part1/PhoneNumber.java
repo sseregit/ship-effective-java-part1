@@ -1,4 +1,4 @@
-package jang.effective.java.chapter04.item17;
+package jang.effective.java.chapter04.item17.part1;
 
 public final class PhoneNumber {
 
