@@ -1,7 +1,6 @@
 package jang.effective.java.chapter05.item33.type_token;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -29,10 +28,12 @@ public class Favrites {
         Integer i = favrites.get(Integer.class);
         String s = favrites.get(String.class);
 
-        favrites.put(List.class, List.of(1, 2, 3));
-        favrites.put(List.class, List.of("a", "b", "c"));
+/*
+        favrites.put(List<Integer>.class, List.of(1, 2, 3));
+        favrites.put(List<String>.class, List.of("a", "b", "c"));
 
         List list = favrites.get(List.class);
         list.forEach(System.out::println);
+*/
     }
 }
