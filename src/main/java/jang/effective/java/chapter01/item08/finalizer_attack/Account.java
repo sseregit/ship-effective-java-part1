@@ -18,8 +18,10 @@ public class Account {
         System.out.printf("transfer %f from %s to %s\n", amount, accountId, to);
     }
 
+/*
     @Override
     protected final void finalize() throws Throwable {
 
     }
+*/
 }
